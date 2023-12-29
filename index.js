@@ -33,8 +33,11 @@ const port = 3000;
 database.connect();
 
 // Middlewares
+app.use(compression());
 app.use(morgan("dev"));
-app.use(cors((origin = "http://localhost:5173"), (credentials = true)));
+app.use(
+    cors((origin = "https://myspace-fe.vercel.app/"), (credentials = true))
+);
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
@@ -63,7 +66,7 @@ const server = http.createServer(app);
 
 const io = require("socket.io")(server, {
     cors: {
-        origin: "http://localhost:5173",
+        origin: "https://myspace-fe.vercel.app/",
         methods: ["GET", "POST"],
     },
 });
