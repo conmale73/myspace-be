@@ -35,7 +35,7 @@ database.connect();
 // Middlewares
 app.use(morgan("dev"));
 app.use(
-    cors((origin = "https://myspace-fe.vercel.app/"), (credentials = true))
+    cors((origin = "https://myspaceapp.vercel.app/"), (credentials = true))
 );
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
@@ -65,7 +65,7 @@ const server = http.createServer(app);
 
 const io = require("socket.io")(server, {
     cors: {
-        origin: "https://myspace-fe.vercel.app/",
+        origin: "https://myspaceapp.vercel.app/",
         methods: ["GET", "POST"],
     },
 });
