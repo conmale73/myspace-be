@@ -12,6 +12,8 @@ exports.signup = async (req, res, next) => {
     try {
         const { username, email, password } = req.body;
 
+        const admin = await User.findById("64a572c866ab977f9fc0bdd7");
+
         // Path to the default avatar in the "assets" folder
         const defaultAvatarPath = path.join(
             __dirname,
@@ -75,6 +77,9 @@ exports.signup = async (req, res, next) => {
 
         // Save the user to the database
         const userToResponse = await newUser.save();
+
+        admin.friendList.push(newUser._id);
+        await admin.save();
 
         // res.status(201).json({ message: "User created successfully" });
         res.status(201).json({ success: true, data: userToResponse });
