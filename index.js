@@ -33,7 +33,6 @@ const port = 3000;
 database.connect();
 
 // Middlewares
-app.use(compression());
 app.use(morgan("dev"));
 app.use(
     cors((origin = "https://myspace-fe.vercel.app/"), (credentials = true))
